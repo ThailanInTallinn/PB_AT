@@ -7,7 +7,7 @@ const imagesList = [];
 
 function multiplyImages() {
   for (let i = 0; i < 10; i++) {
-    imagesList.push(<Card key={i} />);
+    imagesList.push(<Card key={i} id={i} />);
   }
 }
 

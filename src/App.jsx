@@ -1,14 +1,21 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home/home";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  RouterProvider,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Home from "./pages/home/home.jsx";
+import Details from "./pages/details/details";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
-
-export default function Routes() {
-  return <RouterProvider router={router} />;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index path="/" element={<Home />} />
+        <Route path="/details/:id" element={<Details />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
