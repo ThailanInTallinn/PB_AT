@@ -9,6 +9,18 @@
   justify-content: space-between;
 }
 
+.headerLogo {
+  cursor: pointer;
+}
+
+.headerLogo:visited {
+  color: rgb(172, 19, 19);
+}
+
+.headerLogo:hover {
+  color: rgb(172, 19, 19);
+}
+
 .headerContainer input {
   height: 60%;
   border-radius: 30px;
