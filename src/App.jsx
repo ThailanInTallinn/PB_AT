@@ -11,7 +11,7 @@ import Details from "./pages/details/details";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/PB_AT/">
       <Routes>
         <Route index path="/" element={<Home />} />
         <Route path="/details/:id" element={<Details />} />
