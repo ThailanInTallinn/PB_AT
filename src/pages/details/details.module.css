@@ -48,3 +48,42 @@
   justify-content: space-between;
   width: 100%;
 }
+
+@media screen and (max-width: 430px) {
+  .detailsBody {
+    margin-top: 10px;
+    overflow-y: scroll;
+  }
+  .movieContainer {
+    flex-direction: column;
+    width: 95%;
+    height: 120vh;
+    margin-top: 80%;
+    align-items: center;
+  }
+
+  .movieContainer img {
+    width: 100%;
+    height: auto;
+  }
+
+  .textContainer {
+    margin-top: 5%;
+    height: 50%;
+    align-items: center;
+    padding: 0px 10px;
+    width: max-content;
+    text-align: center;
+  }
+
+  .textContainer h2 {
+    font-size: 3.5rem;
+    text-align: center;
+  }
+
+  .textContainer .infoContainer {
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+  }
+}
