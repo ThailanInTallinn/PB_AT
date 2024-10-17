@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background-color: field;
+  min-width: 1210px;
 }
 
 .detailsBody {
@@ -11,6 +12,8 @@
   height: 92%;
   justify-content: center;
   align-items: center;
+  margin-left: min(0px);
+  margin-right: min(0px);
 }
 
 .movieContainer {
@@ -20,7 +23,8 @@
   background-color: black;
   overflow: hidden;
   border-radius: 4px;
-  column-gap: 2%;
+
+  min-width: 1210px;
 }
 
 .movieContainer img {
@@ -34,6 +38,7 @@
   width: max-content;
   align-items: center;
   padding-left: 5%;
+  flex-grow: 1;
 }
 
 .textContainer h2 {
@@ -47,6 +52,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-right: 3%;
 }
 
 @media screen and (max-width: 430px) {

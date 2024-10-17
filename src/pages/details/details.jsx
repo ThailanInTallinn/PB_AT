@@ -1,20 +1,68 @@
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/header";
 import styles from "./details.module.css";
+import axios from "axios";
+import { MY_ACESS_TOKEN } from "../home/home";
+import { useEffect, useState } from "react";
 
 export default function Details() {
   const parametros = useParams();
+  const [movieInfo, setMovieInfo] = useState({
+    title: "",
+    genre: [],
+    releaseDate: "",
+    overview: "",
+    poster_path: "",
+  });
+  async function getMovie() {
+    const accessOptions = {
+      method: "GET",
+      url: `https://api.themoviedb.org/3/movie/${parametros.id}`,
+      headers: {
+        accept: "application/json",
+        Authorization: MY_ACESS_TOKEN,
+      },
+    };
+    const genresNames = [];
+    await axios.request(accessOptions).then(function (response) {
+      const genresList = response.data.genres;
+      const releaseYear = response.data.release_date.slice(0, 4);
+
+      for (let genreObject in genresList) {
+        genresNames.push(genresList[genreObject].name);
+      }
+      setMovieInfo({
+        title: response.data.title,
+        poster_path: `https://image.tmdb.org/t/p/original/${response.data.poster_path}`,
+        genre: genresNames,
+        releaseDate: releaseYear,
+      });
+    });
+  }
+
+  useEffect(() => {
+    getMovie();
+  }, []);
   return (
     <div className={styles.detailsContainer}>
       <Header />
       <div className={styles.detailsBody}>
         <div className={styles.movieContainer}>
-          <img src="https://rukminim2.flixcart.com/image/850/1000/poster/x/p/6/posterskart-breaking-bad-cover-poster-pkbb19-medium-original-imaebf5hqjvbcmmh.jpeg?q=90&crop=false" />
+          <img src={movieInfo.poster_path} />
           <div className={styles.textContainer}>
-            <h2>Breaking Bad</h2>
+            <h2>{movieInfo.title}</h2>
             <div className={styles.infoContainer}>
-              <p>Ano de lançamento: 2008</p>
-              <p>Gênero: Drama, Ficção</p>
+              <p>Ano de lançamento: {movieInfo.releaseDate}</p>
+              <p>
+                {`Gênero: `}
+                {movieInfo.genre.map((item, index) => {
+                  if (index == movieInfo.genre.length - 1) {
+                    return item;
+                  } else {
+                    return `${item}, `;
+                  }
+                })}
+              </p>
             </div>
           </div>
         </div>
