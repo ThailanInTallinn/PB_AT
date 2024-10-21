@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: field;
+  background-color: rgb(18, 18, 18);
   min-width: 1210px;
 }
 
@@ -56,26 +56,32 @@
 }
 
 @media screen and (max-width: 430px) {
+  .detailsContainer {
+    width: 100vw;
+    height: 100vh;
+    min-width: 0px;
+  }
   .detailsBody {
-    margin-top: 10px;
-    overflow-y: scroll;
+    width: inherit;
+    height: 130vh;
   }
   .movieContainer {
     flex-direction: column;
-    width: 95%;
-    height: 120vh;
-    margin-top: 80%;
+    height: calc(130vh - 100px);
+    width: 100vw;
+    min-width: 0px;
     align-items: center;
+    overflow-y: scroll;
   }
 
   .movieContainer img {
-    width: 100%;
+    width: 100vw;
     height: auto;
   }
 
   .textContainer {
     margin-top: 5%;
-    height: 50%;
+    height: 40%;
     align-items: center;
     padding: 0px 10px;
     width: max-content;
