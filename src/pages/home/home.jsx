@@ -34,7 +34,7 @@ function multiplyImages() {
   }
 }
 
-export default function Home() {
+export default function Home({ setCategory, category }) {
   multiplyImages();
   const [popularMoviesList, setPopularMoviesList] = useState([]);
 
@@ -46,6 +46,7 @@ export default function Home() {
       setPopularMoviesList(response.data.results);
     });
   }
+
   useEffect(() => {
     authentication();
     getPopularMovies();
@@ -53,7 +54,7 @@ export default function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <Header />
+      <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
         <div className={styles.categoryContainer}>
           <h2>Filmes populares</h2>

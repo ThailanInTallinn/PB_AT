@@ -34,7 +34,7 @@ function multiplyImages() {
   }
 }
 
-export default function Home() {
+export default function Series({ category, setCategory }) {
   multiplyImages();
   const [popularSeriesList, setPopularSeriesList] = useState([]);
 
@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <Header />
+      <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
         <div className={styles.categoryContainer}>
           <h2>Séries populares</h2>
