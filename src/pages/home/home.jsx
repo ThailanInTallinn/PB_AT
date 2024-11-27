@@ -35,12 +35,8 @@ function multiplyImages() {
 }
 
 export default function Home({ setCategory, category }) {
-  multiplyImages();
   const [popularMoviesList, setPopularMoviesList] = useState([]);
 
-  async function authentication() {
-    await axios.request(options).then(function (response) {});
-  }
   async function getPopularMovies() {
     await axios.request(popularMovies).then(function (response) {
       setPopularMoviesList(response.data.results);
@@ -48,7 +44,7 @@ export default function Home({ setCategory, category }) {
   }
 
   useEffect(() => {
-    authentication();
+    //authentication();
     getPopularMovies();
   }, []);
 
