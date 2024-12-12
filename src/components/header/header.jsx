@@ -2,10 +2,12 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
 import { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useAppContext } from "../../context";
 
-export default function Header({ category, setCategory }) {
+export default function Header() {
   const [menuToggle, setMenuToggle] = useState(false);
   let navigate = useNavigate();
+  const { setCategory, category } = useAppContext();
 
   useEffect(() => {
     navigate(category);
