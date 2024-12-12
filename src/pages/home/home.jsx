@@ -5,19 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAppContext } from "../../context";
 
-const imagesList = [];
-
-const MY_KEY = "3c9c15df68a789c6aaa2a839b9fc02cd";
 export const MY_ACESS_TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzljMTVkZjY4YTc4OWM2YWFhMmE4MzliOWZjMDJjZCIsIm5iZiI6MTcyOTAxMDMxNi4xMTk0MTUsInN1YiI6IjY2YzQ3MmQzZTk2NjFkMzNmZDk2YTMwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ksUKOcK-sBVNzC3lR54wAzewqEpyheexkftNYlxB9og";
-const options = {
-  method: "GET",
-  url: "https://api.themoviedb.org/3/authentication",
-  headers: {
-    accept: "application/json",
-    Authorization: MY_ACESS_TOKEN,
-  },
-};
 
 const popularMovies = {
   method: "GET",
@@ -49,12 +38,6 @@ const topRated = {
   },
 };
 
-function multiplyImages() {
-  for (let i = 0; i < 10; i++) {
-    imagesList.push(<Card key={i} id={i} />);
-  }
-}
-
 export default function Home() {
   const [popularMoviesList, setPopularMoviesList] = useState([]);
   const [upcomingList, setUpcomingList] = useState([]);
@@ -80,7 +63,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    //authentication();
     getPopularMovies();
     getUpcoming();
     getTopRated();

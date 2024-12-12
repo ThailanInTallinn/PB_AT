@@ -5,21 +5,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAppContext } from "../../context";
 
-const imagesList = [];
-
-const MY_KEY = "3c9c15df68a789c6aaa2a839b9fc02cd";
 export const MY_ACESS_TOKEN =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzljMTVkZjY4YTc4OWM2YWFhMmE4MzliOWZjMDJjZCIsIm5iZiI6MTcyOTAxMDMxNi4xMTk0MTUsInN1YiI6IjY2YzQ3MmQzZTk2NjFkMzNmZDk2YTMwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ksUKOcK-sBVNzC3lR54wAzewqEpyheexkftNYlxB9og";
-const options = {
+
+const popularSeries = {
   method: "GET",
-  url: "https://api.themoviedb.org/3/authentication",
+  url: "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
   headers: {
     accept: "application/json",
-    Authorization: MY_ACESS_TOKEN,
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzljMTVkZjY4YTc4OWM2YWFhMmE4MzliOWZjMDJjZCIsIm5iZiI6MTczMjUyOTMyMi42NDIzNTEsInN1YiI6IjY2YzQ3MmQzZTk2NjFkMzNmZDk2YTMwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1ABgAh2WXlIkArGQwAKX8L26J50GTKmW8S0wK4vKmrM",
   },
 };
 
-const popularSeries = {
+const topRated = {
   method: "GET",
   url: "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1",
   headers: {
@@ -29,15 +28,20 @@ const popularSeries = {
   },
 };
 
-function multiplyImages() {
-  for (let i = 0; i < 10; i++) {
-    imagesList.push(<SeriesCard key={i} id={i} />);
-  }
-}
+const onTheAir = {
+  method: "GET",
+  url: "https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=2",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzljMTVkZjY4YTc4OWM2YWFhMmE4MzliOWZjMDJjZCIsIm5iZiI6MTczMjUyOTMyMi42NDIzNTEsInN1YiI6IjY2YzQ3MmQzZTk2NjFkMzNmZDk2YTMwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1ABgAh2WXlIkArGQwAKX8L26J50GTKmW8S0wK4vKmrM",
+  },
+};
 
 export default function Series() {
-  multiplyImages();
   const [popularSeriesList, setPopularSeriesList] = useState([]);
+  const [topRatedList, setTopRatedList] = useState([]);
+  const [onTheAirList, setOnTheAirList] = useState([]);
   const { category, setCategory } = useAppContext();
 
   async function getPopularSeries() {
@@ -45,8 +49,22 @@ export default function Series() {
       setPopularSeriesList(response.data.results);
     });
   }
+
+  async function getTopRatedSeries() {
+    await axios.request(topRated).then(function (response) {
+      setTopRatedList(response.data.results);
+    });
+  }
+
+  async function getOnTheAir() {
+    await axios.request(onTheAir).then(function (response) {
+      setOnTheAirList(response.data.results);
+    });
+  }
   useEffect(() => {
     getPopularSeries();
+    getTopRatedSeries();
+    getOnTheAir();
   }, []);
 
   return (
@@ -69,18 +87,32 @@ export default function Series() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2 className={styles.header}>Categoria</h2>
+          <h2 className={styles.header}>Séries aclamadas pela crítica</h2>
           <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
+            {topRatedList.map((item, index) => {
+              return (
+                <li key={index}>
+                  <SeriesCard
+                    id={item.id}
+                    movieImg={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                  />
+                </li>
+              );
             })}
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2 className={styles.header}>Categoria</h2>
+          <h2 className={styles.header}>No ar agora</h2>
           <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
+            {onTheAirList.map((item, index) => {
+              return (
+                <li key={index}>
+                  <SeriesCard
+                    id={item.id}
+                    movieImg={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                  />
+                </li>
+              );
             })}
           </ul>
         </div>
