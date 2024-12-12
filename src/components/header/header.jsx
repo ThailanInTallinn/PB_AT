@@ -7,7 +7,14 @@ import { useAppContext } from "../../context";
 export default function Header() {
   const [menuToggle, setMenuToggle] = useState(false);
   let navigate = useNavigate();
-  const { setCategory, category } = useAppContext();
+  const {
+    setCategory,
+    category,
+    setSearchTerm,
+    searchTerm,
+    getSearch,
+    getSeriesSearch,
+  } = useAppContext();
 
   /*useEffect(() => {
     navigate(category);
@@ -31,6 +38,7 @@ export default function Header() {
         <Select
           onChange={(e) => {
             navigate(e.target.value);
+            setCategory(e.target.value);
           }}
           value={category}
         >
@@ -47,10 +55,37 @@ export default function Header() {
       </span>
       <nav style={{ display: menuToggle ? "flex" : "" }}>
         <div className={styles.mobileOptions}>
-          <input type="text" placeholder="Buscar" />
+          <input
+            type="text"
+            placeholder="Buscar"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              if (searchTerm.length > 0) {
+                if (category == "/") {
+                  getSearch();
+                } else {
+                  getSeriesSearch();
+                }
+              }
+            }}
+          />
         </div>
       </nav>
-      <input type="text" placeholder="Buscar" />
+      <input
+        type="text"
+        placeholder="Buscar"
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          if (searchTerm.length > 0) {
+            if (category == "/") {
+              getSearch();
+            } else {
+              getSeriesSearch();
+            }
+          }
+        }}
+      />
+      {console.log(searchTerm)}
     </div>
   );
 }

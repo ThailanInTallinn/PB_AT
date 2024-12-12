@@ -42,7 +42,8 @@ export default function Home() {
   const [popularMoviesList, setPopularMoviesList] = useState([]);
   const [upcomingList, setUpcomingList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
-  const { category, setCategory } = useAppContext();
+  const { category, setCategory, searchTerm, resultsList, setResultsList } =
+    useAppContext();
 
   async function getPopularMovies() {
     await axios.request(popularMovies).then(function (response) {
@@ -68,7 +69,7 @@ export default function Home() {
     getTopRated();
   }, []);
 
-  return (
+  return !searchTerm > 0 ? (
     <div className={styles.homeContainer}>
       <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
@@ -103,7 +104,14 @@ export default function Home() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2 className={styles.header}>Filmes aclamados pela crítica</h2>
+          <h2
+            className={styles.header}
+            onClick={() => {
+              console.log(topRatedList[0]);
+            }}
+          >
+            Filmes aclamados pela crítica
+          </h2>
           <ul className={styles.listContainer}>
             {topRatedList.map((item, index) => {
               return (
@@ -115,6 +123,38 @@ export default function Home() {
                 </li>
               );
             })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className={styles.homeContainer}>
+      <Header category={category} setCategory={setCategory} />
+      <div className={styles.bodyContainer}>
+        <div className={styles.categoryContainer}>
+          <h2
+            className={styles.header}
+            onClick={() => {
+              console.log(topRatedList[0]);
+            }}
+          >
+            Resultados da busca
+          </h2>
+          <ul className={styles.listContainer}>
+            {resultsList ? (
+              resultsList.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <Card
+                      id={item.id}
+                      movieImg={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    />
+                  </li>
+                );
+              })
+            ) : (
+              <h2>Não há resultados para a sua busca :(</h2>
+            )}
           </ul>
         </div>
       </div>

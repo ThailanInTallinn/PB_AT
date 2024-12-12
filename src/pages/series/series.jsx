@@ -42,7 +42,8 @@ export default function Series() {
   const [popularSeriesList, setPopularSeriesList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
   const [onTheAirList, setOnTheAirList] = useState([]);
-  const { category, setCategory } = useAppContext();
+  const { category, setCategory, searchTerm, seriesResultsList } =
+    useAppContext();
 
   async function getPopularSeries() {
     await axios.request(popularSeries).then(function (response) {
@@ -67,7 +68,7 @@ export default function Series() {
     getOnTheAir();
   }, []);
 
-  return (
+  return !searchTerm > 0 ? (
     <div className={styles.homeContainer}>
       <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
@@ -114,6 +115,31 @@ export default function Series() {
                 </li>
               );
             })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className={styles.homeContainer}>
+      <Header category={category} setCategory={setCategory} />
+      <div className={styles.bodyContainer}>
+        <div className={styles.categoryContainer}>
+          <h2 className={styles.header}>Resultados da busca</h2>
+          <ul className={styles.listContainer}>
+            {seriesResultsList ? (
+              seriesResultsList.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <SeriesCard
+                      id={item.id}
+                      movieImg={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    />
+                  </li>
+                );
+              })
+            ) : (
+              <h2>Não há resultados para a sua busca :(</h2>
+            )}
           </ul>
         </div>
       </div>
