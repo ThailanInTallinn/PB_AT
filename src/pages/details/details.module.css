@@ -55,7 +55,7 @@
   padding-right: 3%;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 440px) {
   .detailsContainer {
     width: 100vw;
     height: 100vh;
