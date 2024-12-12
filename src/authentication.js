@@ -32,7 +32,7 @@ async function loginTest() {
     .request(options)
     .then((res) => res.data.request_token)
     .then((data) => {
-      window.location.href = `https://www.themoviedb.org/authenticate/${data}?redirect_to=http://localhost:5173/`;
+      window.location.href = `https://www.themoviedb.org/authenticate/${data}?redirect_to=https://arleteflix.netlify.app/`;
       localStorage.setItem("sessionID", JSON.stringify(data));
     });
 }
