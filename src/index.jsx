@@ -36,7 +36,8 @@ const router = createBrowserRouter(
         />
         <Route
           path="/series"
-          element={<Series loader={() => handleAuthenticationProtected()} />}
+          element={<Series />}
+          loader={() => handleAuthenticationProtected()}
         />
         <Route
           path="/seriesdetails/:id"

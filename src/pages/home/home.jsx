@@ -3,6 +3,7 @@ import Card from "../../components/card/card";
 import styles from "./home.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAppContext } from "../../context";
 
 const imagesList = [];
 
@@ -34,8 +35,9 @@ function multiplyImages() {
   }
 }
 
-export default function Home({ setCategory, category }) {
+export default function Home() {
   const [popularMoviesList, setPopularMoviesList] = useState([]);
+  const { category, setCategory } = useAppContext();
 
   async function getPopularMovies() {
     await axios.request(popularMovies).then(function (response) {

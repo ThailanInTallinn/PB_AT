@@ -12,14 +12,14 @@ const options = {
   },
 };
 
-async function isAuthenticated() {
+function isAuthenticated() {
   const sessionToken = localStorage.getItem("sessionID");
 
   if (sessionToken) throw redirect("/");
   return null;
 }
 
-async function handleAuthenticationProtected() {
+function handleAuthenticationProtected() {
   const sessionToken = localStorage.getItem("sessionID");
 
   if (!sessionToken) throw redirect("/signin");
@@ -32,7 +32,7 @@ async function loginTest() {
     .request(options)
     .then((res) => res.data.request_token)
     .then((data) => {
-      window.location.href = `https://www.themoviedb.org/authenticate/${data}?redirect_to=https://arleteflix.netlify.app/`;
+      // window.location.href = `https://www.themoviedb.org/authenticate/${data}?redirect_to=https://arleteflix.netlify.app/`;
       localStorage.setItem("sessionID", JSON.stringify(data));
     });
 }

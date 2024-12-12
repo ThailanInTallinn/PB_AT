@@ -9,9 +9,9 @@ export default function Header() {
   let navigate = useNavigate();
   const { setCategory, category } = useAppContext();
 
-  useEffect(() => {
+  /*useEffect(() => {
     navigate(category);
-  }, [category]);
+  }, [category]);*/
 
   return (
     <div className={styles.headerContainer}>
@@ -30,10 +30,10 @@ export default function Header() {
         <InputLabel>Categoria</InputLabel>
         <Select
           onChange={(e) => {
-            setCategory(() => e.target.value);
+            navigate(e.target.value);
           }}
+          value={category}
         >
-          {console.log(category)}
           <MenuItem value={"/"}>Filmes</MenuItem>
           <MenuItem value={"/series"}>Séries</MenuItem>
         </Select>

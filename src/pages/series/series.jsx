@@ -3,6 +3,7 @@ import SeriesCard from "../../components/seriesCard/seriescard";
 import styles from "./series.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAppContext } from "../../context";
 
 const imagesList = [];
 
@@ -34,20 +35,17 @@ function multiplyImages() {
   }
 }
 
-export default function Series({ category, setCategory }) {
+export default function Series() {
   multiplyImages();
   const [popularSeriesList, setPopularSeriesList] = useState([]);
+  const { category, setCategory } = useAppContext();
 
-  async function authentication() {
-    await axios.request(options).then(function (response) {});
-  }
   async function getPopularSeries() {
     await axios.request(popularSeries).then(function (response) {
       setPopularSeriesList(response.data.results);
     });
   }
   useEffect(() => {
-    authentication();
     getPopularSeries();
   }, []);
 
