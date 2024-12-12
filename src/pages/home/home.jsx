@@ -91,7 +91,7 @@ export default function Home() {
       <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
         <div className={styles.categoryContainer}>
-          <h2>Filmes populares</h2>
+          <h2 className={styles.header}>Filmes populares</h2>
           <ul className={styles.listContainer}>
             {popularMoviesList.map((item, index) => {
               return (
@@ -106,7 +106,7 @@ export default function Home() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2>Próximos lançamentos</h2>
+          <h2 className={styles.header}>Próximos lançamentos</h2>
           <ul className={styles.listContainer}>
             {upcomingList.map((item, index) => {
               return (
@@ -121,7 +121,7 @@ export default function Home() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2>Filmes aclamados pela crítica</h2>
+          <h2 className={styles.header}>Filmes aclamados pela crítica</h2>
           <ul className={styles.listContainer}>
             {topRatedList.map((item, index) => {
               return (
