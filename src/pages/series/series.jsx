@@ -54,7 +54,7 @@ export default function Series() {
       <Header category={category} setCategory={setCategory} />
       <div className={styles.bodyContainer}>
         <div className={styles.categoryContainer}>
-          <h2>Séries populares</h2>
+          <h2 className={styles.header}>Séries populares</h2>
           <ul className={styles.listContainer}>
             {popularSeriesList.map((item, index) => {
               return (
@@ -69,7 +69,7 @@ export default function Series() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
+          <h2 className={styles.header}>Categoria</h2>
           <ul className={styles.listContainer}>
             {imagesList.map((item, index) => {
               return <li key={index}>{item}</li>;
@@ -77,63 +77,7 @@ export default function Series() {
           </ul>
         </div>
         <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
-          <ul className={styles.listContainer}>
-            {imagesList.map((item, index) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
-        </div>
-        <div className={styles.categoryContainer}>
-          <h2>Categoria</h2>
+          <h2 className={styles.header}>Categoria</h2>
           <ul className={styles.listContainer}>
             {imagesList.map((item, index) => {
               return <li key={index}>{item}</li>;
