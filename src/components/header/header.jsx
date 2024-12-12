@@ -46,11 +46,9 @@ export default function Header({ category, setCategory }) {
       <nav style={{ display: menuToggle ? "flex" : "" }}>
         <div className={styles.mobileOptions}>
           <input type="text" placeholder="Buscar" />
-          <button>Toggle theme</button>
         </div>
       </nav>
       <input type="text" placeholder="Buscar" />
-      <button>Toggle theme</button>
     </div>
   );
 }
