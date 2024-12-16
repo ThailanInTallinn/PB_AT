@@ -22,7 +22,14 @@ export default function Header() {
 
   return (
     <div className={styles.headerContainer}>
-      <Link to={"/"} className={styles.headerLogo}>
+      <Link
+        to={"/"}
+        className={styles.headerLogo}
+        onClick={() => {
+          setSearchTerm("");
+          setCategory("/");
+        }}
+      >
         <h1>ArleteFlix</h1>
       </Link>
       <FormControl
@@ -60,6 +67,7 @@ export default function Header() {
             placeholder="Buscar"
             onChange={(e) => {
               setSearchTerm(e.target.value);
+
               if (searchTerm.length > 0) {
                 if (category == "/") {
                   getSearch();
@@ -76,6 +84,7 @@ export default function Header() {
         placeholder="Buscar"
         onChange={(e) => {
           setSearchTerm(e.target.value);
+
           if (searchTerm.length > 0) {
             if (category == "/") {
               getSearch();
